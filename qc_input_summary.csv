@@ -1,4 +1,0 @@
-qc_file,rows,unique_sample_ids,duplicated_sample_id_rows,taxa_features,cluster1_ids_present,cluster1_removed,prevalence_1pct_feature_filter
-qc1_duplicates_removed_only.csv,1125,1125,0,1580,80,FALSE,FALSE
-qc2_duplicates_removed_cluster1_removed.csv,1045,1045,0,1580,0,TRUE,FALSE
-qc3_duplicates_removed_prevalence_1pct.csv,1125,1125,0,375,80,FALSE,TRUE
