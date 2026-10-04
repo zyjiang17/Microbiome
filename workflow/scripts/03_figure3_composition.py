@@ -23,8 +23,8 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / "config"))
-from settings import QC2_INPUT_CSV, OUTPUT_ROOT
-INPUT_FILE = Path(os.environ.get("MICROBIOME_QC2_INPUT", QC2_INPUT_CSV))
+from settings import QC3_INPUT_CSV, OUTPUT_ROOT
+INPUT_FILE = Path(os.environ.get("MICROBIOME_QC3_INPUT", QC3_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "03_figure3"
 META_COLS = {"sample_id", "age", "weight"}
 

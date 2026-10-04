@@ -52,8 +52,8 @@ def require(source: Path, name: str) -> Path:
 
 def render_figure1(source: Path, output: Path) -> None:
     """Recreate only the visual clustering layout from saved order abundances."""
-    order = pd.read_csv(require(source, "01_figure1/figure1_order_abundance_qc3_duplicates_1pct.csv"), index_col=0)
-    manifest = pd.read_csv(require(source, "01_figure1/qc3_sample_manifest.csv"))
+    order = pd.read_csv(require(source, "01_figure1/figure1_order_abundance_qc2_duplicates_1pct.csv"), index_col=0)
+    manifest = pd.read_csv(require(source, "01_figure1/qc2_sample_manifest.csv"))
     age_group = pd.cut(manifest.age, bins=[0, 2, 7, np.inf], labels=["Puppy", "Adult", "Mature"], include_lowest=True)
     age_palette = {"Puppy": "#ACDFFF", "Adult": "#FFEB56", "Mature": "#07D4A1"}
     aerobic = {"Neisseriales", "Pasteurellales", "Lactobacillales", "Bacillales", "Micrococcales",
@@ -136,7 +136,7 @@ def render_figure3(source: Path, output: Path) -> None:
 
 
 def render_figure4(source: Path, output: Path) -> None:
-    data = pd.read_csv(require(source, "04_figure4/figure4_genus_relative_abundance_qc2.csv"))
+    data = pd.read_csv(require(source, "04_figure4/figure4_genus_relative_abundance_qc3.csv"))
     for genus in ("Porphyromonas", "Conchiformibius"):
         col = f"g__{genus}"
         rho, p = spearmanr(data.age, data[col])

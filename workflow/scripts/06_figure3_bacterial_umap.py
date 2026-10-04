@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Runnable QC3 bacterial-order UMAP from the collaborator notebook."""
+"""Runnable QC2 bacterial-order UMAP from the collaborator notebook."""
 from __future__ import annotations
 import os, sys
 from pathlib import Path
@@ -16,8 +16,8 @@ from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "config"))
-from settings import QC3_INPUT_CSV, OUTPUT_ROOT
-INPUT_FILE = Path(os.environ.get("MICROBIOME_QC3_INPUT", QC3_INPUT_CSV))
+from settings import QC2_INPUT_CSV, OUTPUT_ROOT
+INPUT_FILE = Path(os.environ.get("MICROBIOME_QC2_INPUT", QC2_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "06_figure3_bacterial_umap"
 
 def main() -> None:

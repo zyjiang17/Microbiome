@@ -18,9 +18,9 @@ from statsmodels.nonparametric.smoothers_lowess import lowess
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "config"))
-from settings import QC2_INPUT_CSV, OUTPUT_ROOT
+from settings import QC3_INPUT_CSV, OUTPUT_ROOT
 
-INPUT_FILE = Path(os.environ.get("MICROBIOME_QC2_INPUT", QC2_INPUT_CSV))
+INPUT_FILE = Path(os.environ.get("MICROBIOME_QC3_INPUT", QC3_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "07_denominator_comparison"
 GENERA = ("Porphyromonas", "Conchiformibius")
 

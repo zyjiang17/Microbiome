@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figure 1 clustermap: QC3 input with oxygen-preference order annotations."""
+"""Figure 1 clustermap: QC2 input with oxygen-preference order annotations."""
 
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ from scipy.cluster.hierarchy import dendrogram, leaves_list, linkage
 ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / "config"))
-from settings import QC3_INPUT_CSV, OUTPUT_ROOT
-INPUT_FILE = Path(os.environ.get("MICROBIOME_QC3_INPUT", QC3_INPUT_CSV))
+from settings import QC2_INPUT_CSV, OUTPUT_ROOT
+INPUT_FILE = Path(os.environ.get("MICROBIOME_QC2_INPUT", QC2_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "01_figure1"
 META_COLS = {"sample_id", "age", "weight"}
 
@@ -105,7 +105,7 @@ def main() -> None:
     X = taxa_matrix(df)
     X.index = df.index
     order = prevalence_filter(collapse_taxa(X, "o__"), min_prev=0.01)
-    order.to_csv(OUTDIR / "figure1_order_abundance_qc3_duplicates_1pct.csv")
+    order.to_csv(OUTDIR / "figure1_order_abundance_qc2_duplicates_1pct.csv")
 
     plot_mat = np.log10(order + 1e-5).T
     row_colors = [
@@ -194,7 +194,7 @@ def main() -> None:
         Patch(facecolor="#B0BEC5", label="Other / non-core"),
     ]
     fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.09, 0.93), frameon=False, fontsize=10)
-    fig.savefig(OUTDIR / "figure1_order_clustermap_qc3_duplicates_1pct.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUTDIR / "figure1_order_clustermap_qc2_duplicates_1pct.png", dpi=300, bbox_inches="tight")
     plt.close(fig)
 
 

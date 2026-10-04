@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Faithful runnable version of the collaborator's QC3 dog UMAP notebook."""
+"""Faithful runnable version of the collaborator's QC2 dog UMAP notebook."""
 from __future__ import annotations
 
 import hashlib
@@ -25,9 +25,9 @@ from statsmodels.nonparametric.smoothers_lowess import lowess
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "config"))
-from settings import QC3_INPUT_CSV, OUTPUT_ROOT
+from settings import QC2_INPUT_CSV, OUTPUT_ROOT
 
-INPUT_FILE = Path(os.environ.get("MICROBIOME_QC3_INPUT", QC3_INPUT_CSV))
+INPUT_FILE = Path(os.environ.get("MICROBIOME_QC2_INPUT", QC2_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "02_figure2"
 N_NEIGHBORS, MIN_DIST, SEED, PSEUDOTIME_K = 12, 0.25, 42, 10
 
@@ -43,7 +43,7 @@ def main() -> None:
     OUTDIR.mkdir(parents=True, exist_ok=True)
     df = pd.read_csv(INPUT_FILE)
     if df.sample_id.duplicated().any():
-        raise ValueError("QC3 must already contain unique sample_id values")
+        raise ValueError("QC2 must already contain unique sample_id values")
     metadata = df[["sample_id", "age", "weight"]].copy()
     matrix = order_matrix(df)
     embedding = umap.UMAP(metric="correlation", n_neighbors=N_NEIGHBORS,

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""QC2 genus-specific trends using original MetaPhlAn relative abundance."""
+"""QC3 genus-specific trends using original MetaPhlAn relative abundance."""
 from __future__ import annotations
 
 import os
@@ -18,9 +18,9 @@ from statsmodels.nonparametric.smoothers_lowess import lowess
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "config"))
-from settings import QC2_INPUT_CSV, OUTPUT_ROOT
+from settings import QC3_INPUT_CSV, OUTPUT_ROOT
 
-INPUT_FILE = Path(os.environ.get("MICROBIOME_QC2_INPUT", QC2_INPUT_CSV))
+INPUT_FILE = Path(os.environ.get("MICROBIOME_QC3_INPUT", QC3_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "04_figure4"
 
 
@@ -53,7 +53,7 @@ def main() -> None:
     data = df[["sample_id", "age", "weight"]].copy()
     for genus, column in names.items():
         data[f"g__{genus}"] = pd.to_numeric(df[column], errors="coerce").fillna(0)
-    data.to_csv(OUTDIR / "figure4_genus_relative_abundance_qc2.csv", index=False)
+    data.to_csv(OUTDIR / "figure4_genus_relative_abundance_qc3.csv", index=False)
     stats = []
     for genus in ("Porphyromonas", "Conchiformibius"):
         label = f"g__{genus}"

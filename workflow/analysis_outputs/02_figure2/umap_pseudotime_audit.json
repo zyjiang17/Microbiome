@@ -1,5 +1,5 @@
 {
-  "input": "/u/home/z/zyjiang/canine_oral_microbiome_repro/pipeline/inputs/qc3_duplicates_removed_prevalence_1pct.csv",
+  "input": "/u/home/z/zyjiang/canine_oral_microbiome_repro/pipeline/inputs/qc2_duplicates_removed_prevalence_1pct.csv",
   "sha256": "af8480e86a0f3678caadf40b3d55ea1863aa76d92b9fd06ee12817b6670b2a38",
   "samples": 1125,
   "order_features": 27,
