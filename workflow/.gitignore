@@ -1,0 +1,18 @@
+# Local environments and caches
+.venv/
+.venv_*/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Cluster-only transient material
+logs/
+results/slurm_*/
+results/render_*/
+scratch/
+
+# Raw sequencing data belong in the archival data repository, not GitHub
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz

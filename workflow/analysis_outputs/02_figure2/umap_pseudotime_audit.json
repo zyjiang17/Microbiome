@@ -1,0 +1,17 @@
+{
+  "input": "/u/home/z/zyjiang/canine_oral_microbiome_repro/pipeline/inputs/qc3_duplicates_removed_prevalence_1pct.csv",
+  "sha256": "af8480e86a0f3678caadf40b3d55ea1863aa76d92b9fd06ee12817b6670b2a38",
+  "samples": 1125,
+  "order_features": 27,
+  "metric": "correlation",
+  "n_neighbors": 12,
+  "min_dist": 0.25,
+  "dbscan_eps": 0.55,
+  "dbscan_min_samples": 10,
+  "pseudotime_knn": 10,
+  "connected_components": 1,
+  "main_component_n": 1125,
+  "excluded_component_n": 0,
+  "spearman_rho": 0.6702569532582682,
+  "spearman_p": 1.2542440947900046e-147
+}

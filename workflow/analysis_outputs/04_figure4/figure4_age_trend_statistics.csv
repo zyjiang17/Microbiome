@@ -1,0 +1,3 @@
+taxon,n,spearman_r,spearman_p,x_axis,smoother,abundance_definition
+g__Porphyromonas,1043,0.5906291056271539,4.410885766016177e-99,linear age in years,"LOWESS frac=0.65, it=0",MetaPhlAn relative abundance
+g__Conchiformibius,1043,-0.41478504588013365,1.245559456440333e-44,linear age in years,"LOWESS frac=0.65, it=0",MetaPhlAn relative abundance

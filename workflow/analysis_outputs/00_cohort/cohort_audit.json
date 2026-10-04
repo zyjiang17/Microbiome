@@ -1,0 +1,50 @@
+[
+  {
+    "cohort": "qc1",
+    "input": "/u/home/z/zyjiang/canine_oral_microbiome_repro/pipeline/inputs/qc1_duplicates_removed_only.csv",
+    "sha256": "8e3db296c285e2e9e2b562d72a5b820f05f1cce5ff536f58d8d17e80fad3cc3b",
+    "samples": 1125,
+    "unique_sample_ids": 1125,
+    "taxa_features": 1580,
+    "age_nonmissing": 1125,
+    "weight_nonmissing": 1004,
+    "age_ge_1": 725,
+    "age_ge_1_weight_nonmissing": 665
+  },
+  {
+    "cohort": "qc2",
+    "input": "/u/home/z/zyjiang/canine_oral_microbiome_repro/pipeline/inputs/qc2_duplicates_cluster1_and_minus1_removed.csv",
+    "sha256": "5f0a086a7595a0630d15286ebd8b886deb77ae04ac065377058cb432a6464f5d",
+    "samples": 1043,
+    "unique_sample_ids": 1043,
+    "taxa_features": 1580,
+    "age_nonmissing": 1043,
+    "weight_nonmissing": 934,
+    "age_ge_1": 675,
+    "age_ge_1_weight_nonmissing": 618
+  },
+  {
+    "cohort": "qc3",
+    "input": "/u/home/z/zyjiang/canine_oral_microbiome_repro/pipeline/inputs/qc3_duplicates_removed_prevalence_1pct.csv",
+    "sha256": "af8480e86a0f3678caadf40b3d55ea1863aa76d92b9fd06ee12817b6670b2a38",
+    "samples": 1125,
+    "unique_sample_ids": 1125,
+    "taxa_features": 375,
+    "age_nonmissing": 1125,
+    "weight_nonmissing": 1004,
+    "age_ge_1": 725,
+    "age_ge_1_weight_nonmissing": 665
+  },
+  {
+    "cohort": "qc4",
+    "input": "/u/home/z/zyjiang/canine_oral_microbiome_repro/pipeline/inputs/qc4_duplicates_cluster_1_minus_1_removed_age_ge_1.csv",
+    "sha256": "29348984d6f4eb4485d8a422b537d5f8389e4f595e3a062c0b33c63be1c7d9ab",
+    "samples": 675,
+    "unique_sample_ids": 675,
+    "taxa_features": 1580,
+    "age_nonmissing": 675,
+    "weight_nonmissing": 618,
+    "age_ge_1": 675,
+    "age_ge_1_weight_nonmissing": 618
+  }
+]

@@ -1,0 +1,11 @@
+clade,r_age,r_weight,label,discord_up_age,discord_up_weight,label_group
+k__Bacteria|p__Fusobacteria|c__Fusobacteriia|o__Fusobacteriales|f__Fusobacteriaceae|g__Fusobacterium,0.40115004807486687,-0.40449613899816544,g__Fusobacterium,0.8056461870730323,,Age up / Weight down
+k__Bacteria|p__Fusobacteria|c__Fusobacteriia|o__Fusobacteriales|f__Fusobacteriaceae,0.39641971826992023,-0.4000364708968012,f__Fusobacteriaceae,0.7964561891667215,,Age up / Weight down
+k__Bacteria|p__Bacteroidota|c__Bacteroidia,0.5056228853394396,-0.28453085169389497,c__Bacteroidia,0.7901537370333345,,Age up / Weight down
+k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales,0.5056228853394396,-0.28453085169389497,o__Bacteroidales,0.7901537370333345,,Age up / Weight down
+k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Tannerellaceae,0.4879312746694064,-0.284853754406759,f__Tannerellaceae,0.7727850290761653,,Age up / Weight down
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Neisseriales,-0.4578266424080975,0.28071108809842926,o__Neisseriales,,0.7385377305065268,Age down / Weight up
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae,-0.4578266424080975,0.28071108809842926,f__Neisseriaceae,,0.7385377305065268,Age down / Weight up
+k__Bacteria|p__Proteobacteria,-0.43747894406247245,0.2576095327121041,p__Proteobacteria,,0.6950884767745765,Age down / Weight up
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria,-0.41618918725118825,0.2766901061294498,c__Betaproteobacteria,,0.692879293380638,Age down / Weight up
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Conchiformibius,-0.4088924729209465,0.2258963856896537,g__Conchiformibius,,0.6347888586106002,Age down / Weight up
