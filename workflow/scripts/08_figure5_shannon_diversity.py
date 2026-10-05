@@ -53,33 +53,36 @@ def group_plot(
     *,
     group_column: str,
     order: list[str],
-    colors: list[str],
+    display_labels: list[str],
     x_label: str,
-    statistic_label: str,
     output_stem: Path,
 ) -> None:
     present = [group for group in order if (data[group_column].astype(str) == group).any()]
     values = [data.loc[data[group_column].astype(str) == group, "shannon"].to_numpy() for group in present]
-    fig, ax = plt.subplots(figsize=(7.8, 5.2))
-    violin = ax.violinplot(values, showmeans=False, showmedians=True, showextrema=False)
-    for body, color in zip(violin["bodies"], colors):
-        body.set_facecolor(color)
-        body.set_edgecolor("black")
-        body.set_alpha(0.75)
-    ax.boxplot(values, widths=0.13, patch_artist=True, boxprops={"facecolor": "white", "alpha": 0.85},
-               medianprops={"color": "black"})
+    fig, ax = plt.subplots(figsize=(6, 5))
+    violin = ax.violinplot(values, showmeans=False, showmedians=False, showextrema=False)
+    for body in violin["bodies"]:
+        body.set_facecolor("#377BA8")
+        body.set_edgecolor("#333333")
+        body.set_linewidth(1.15)
+        body.set_alpha(0.96)
     rng = np.random.default_rng(42)
     for index, value in enumerate(values, start=1):
-        ax.scatter(index + rng.uniform(-0.07, 0.07, len(value)), value, s=5, alpha=0.16, color="#333333", linewidths=0)
-    rho, p = spearmanr(data[statistic_label], data["shannon"])
+        ax.scatter(index + rng.uniform(-0.13, 0.13, len(value)), value,
+                   s=10, alpha=0.32, color="#152C3D", linewidths=0, zorder=3)
+    ax.boxplot(
+        values, widths=0.09, patch_artist=True, showfliers=False,
+        boxprops={"facecolor": "#242424", "edgecolor": "#242424", "alpha": 0.86},
+        whiskerprops={"color": "#242424", "linewidth": 1.15},
+        capprops={"color": "#242424", "linewidth": 1.15},
+        medianprops={"color": "white", "linewidth": 1.45},
+    )
     ax.set_xticks(range(1, len(present) + 1))
-    ax.set_xticklabels(present, fontsize=9)
-    ax.set(xlabel=x_label, ylabel="Species-level Shannon diversity")
+    ax.set_xticklabels(display_labels, fontsize=9)
+    ax.set(xlabel=x_label, ylabel="Shannon Diversity")
     ax.xaxis.label.set_size(11)
     ax.yaxis.label.set_size(11)
     ax.tick_params(axis="y", labelsize=9)
-    ax.text(.98, .97, f"Spearman $\\rho$ = {rho:.3f}\np = {p:.2g}", transform=ax.transAxes,
-            va="top", ha="right", fontsize=9, bbox={"facecolor": "white", "edgecolor": "none", "alpha": .82})
     fig.tight_layout()
     fig.savefig(output_stem.with_suffix(".png"), dpi=300, bbox_inches="tight")
     fig.savefig(output_stem.with_suffix(".pdf"), bbox_inches="tight")
@@ -99,7 +102,8 @@ def main() -> None:
     age_table.to_csv(OUTDIR / "figure5_species_shannon_age_qc3.csv", index=False)
     group_plot(
         age_table, group_column="age_group", order=["Puppy (0–2)", "Adult (>2–7)", "Mature (>7)"],
-        colors=["#ACDFFF", "#FFEB56", "#07D4A1"], x_label="Dog age group", statistic_label="age",
+        display_labels=["Puppy", "Adult", "Mature"],
+        x_label="Dog Age Group",
         output_stem=OUTDIR / "figure5_species_shannon_by_age_group",
     )
 
@@ -114,7 +118,8 @@ def main() -> None:
     weight_table.to_csv(OUTDIR / "figure5_species_shannon_weight_qc4.csv", index=False)
     group_plot(
         weight_table, group_column="weight_group", order=["Small (<20 lb)", "Medium (20–<60 lb)", "Large (≥60 lb)"],
-        colors=["#9ECAE1", "#74C476", "#FD8D3C"], x_label="Dog weight group", statistic_label="weight",
+        display_labels=["Small", "Medium", "Large"],
+        x_label="Dog Weight Group",
         output_stem=OUTDIR / "figure5_species_shannon_by_weight_group",
     )
 

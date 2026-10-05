@@ -214,27 +214,32 @@ def render_shannon_diversity(source: Path, output: Path) -> None:
     """Render Shannon group plots without recomputing diversity values."""
     specs = [
         ("08_figure5_shannon/figure5_species_shannon_age_qc3.csv", "age_group",
-         ["Puppy (0–2)", "Adult (>2–7)", "Mature (>7)"], ["#ACDFFF", "#FFEB56", "#07D4A1"],
-         "Dog age group", "age", "figure5_species_shannon_by_age_group"),
+         ["Puppy (0–2)", "Adult (>2–7)", "Mature (>7)"],
+         ["Puppy", "Adult", "Mature"], "Dog Age Group", "figure5_species_shannon_by_age_group"),
         ("08_figure5_shannon/figure5_species_shannon_weight_qc4.csv", "weight_group",
-         ["Small (<20 lb)", "Medium (20–<60 lb)", "Large (≥60 lb)"], ["#9ECAE1", "#74C476", "#FD8D3C"],
-         "Dog weight group", "weight", "figure5_species_shannon_by_weight_group"),
+         ["Small (<20 lb)", "Medium (20–<60 lb)", "Large (≥60 lb)"],
+         ["Small", "Medium", "Large"], "Dog Weight Group", "figure5_species_shannon_by_weight_group"),
     ]
-    for filename, group_col, order, colors, x_label, variable, stem in specs:
+    for filename, group_col, order, display_labels, x_label, stem in specs:
         data = pd.read_csv(require(source, filename))
         present = [group for group in order if (data[group_col].astype(str) == group).any()]
         values = [data.loc[data[group_col].astype(str) == group, "shannon"].to_numpy() for group in present]
-        fig, ax = plt.subplots(figsize=(7.8, 5.2))
-        violin = ax.violinplot(values, showmeans=False, showmedians=True, showextrema=False)
-        for body, color in zip(violin["bodies"], colors):
-            body.set_facecolor(color); body.set_edgecolor("black"); body.set_alpha(.75)
-        ax.boxplot(values, widths=.13, patch_artist=True, boxprops={"facecolor": "white", "alpha": .85}, medianprops={"color": "black"})
-        rho, p = spearmanr(data[variable], data.shannon)
-        ax.set_xticks(range(1, len(present) + 1)); ax.set_xticklabels(present, fontsize=9)
-        ax.set(xlabel=x_label, ylabel="Species-level Shannon diversity")
+        fig, ax = plt.subplots(figsize=(6, 5))
+        violin = ax.violinplot(values, showmeans=False, showmedians=False, showextrema=False)
+        for body in violin["bodies"]:
+            body.set_facecolor("#377BA8"); body.set_edgecolor("#333333"); body.set_linewidth(1.15); body.set_alpha(.96)
+        rng = np.random.default_rng(42)
+        for index, value in enumerate(values, start=1):
+            ax.scatter(index + rng.uniform(-.13, .13, len(value)), value,
+                       s=10, alpha=.32, color="#152C3D", linewidths=0, zorder=3)
+        ax.boxplot(values, widths=.09, patch_artist=True, showfliers=False,
+                   boxprops={"facecolor": "#242424", "edgecolor": "#242424", "alpha": .86},
+                   whiskerprops={"color": "#242424", "linewidth": 1.15},
+                   capprops={"color": "#242424", "linewidth": 1.15},
+                   medianprops={"color": "white", "linewidth": 1.45})
+        ax.set_xticks(range(1, len(present) + 1)); ax.set_xticklabels(display_labels, fontsize=9)
+        ax.set(xlabel=x_label, ylabel="Shannon Diversity")
         ax.xaxis.label.set_size(11); ax.yaxis.label.set_size(11); ax.tick_params(axis="y", labelsize=9)
-        ax.text(.98, .97, f"Spearman $\\rho$ = {rho:.3f}\np = {p:.2g}", transform=ax.transAxes,
-                va="top", ha="right", fontsize=9, bbox={"facecolor": "white", "edgecolor": "none", "alpha": .82})
         fig.tight_layout()
         save(fig, output / stem)
 
