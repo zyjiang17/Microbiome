@@ -14,6 +14,8 @@ fit UMAP or Elastic Net models.  Populate `current/` with this structure:
 05_figure5/figure5_taxon_age_weight_spearman_qc4.csv
 05_figure5/figure5_taxon_age_weight_spearman_labeled_qc4.csv
 06_figure3_bacterial_umap/bacterial_order_umap_coordinates.csv
+08_figure5_shannon/figure5_species_shannon_age_qc3.csv
+08_figure5_shannon/figure5_species_shannon_weight_qc4.csv
 ```
 
 The clustermap is redrawn from its saved abundance matrix and sample manifest;

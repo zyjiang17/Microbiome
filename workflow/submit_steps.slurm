@@ -27,7 +27,7 @@ export MICROBIOME_INPUT_DIR="${MICROBIOME_INPUT_DIR:-$PIPELINE_DIR/inputs}"
 export MICROBIOME_OUTPUT="${MICROBIOME_OUTPUT:-$PIPELINE_DIR/results/slurm_${SLURM_JOB_ID}}"
 
 if (( $# == 0 )); then
-  echo "Provide one or more step numbers: 00 01 02 03 04 05 06 07" >&2
+  echo "Provide one or more step numbers: 00 01 02 03 04 05 06 07 08" >&2
   exit 2
 fi
 
@@ -42,6 +42,7 @@ for step in "$@"; do
     05) script="05_figure5_enet.py" ;;
     06) script="06_figure3_bacterial_umap.py" ;;
     07) script="07_figure4_denominator_comparison.py" ;;
+    08) script="08_figure5_shannon_diversity.py" ;;
     *) echo "Unknown step: $step" >&2; exit 2 ;;
   esac
   echo "==> Running $script"

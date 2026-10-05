@@ -174,14 +174,23 @@ def render_figure5(source: Path, output: Path) -> None:
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.scatter(corr.r_age, corr.r_weight, s=12, alpha=.5, color="lightgray")
     palette = {"Age up / Weight down": "#C53A33", "Age down / Weight up": "#3B75AF"}
+    texts, target_x, target_y = [], [], []
     for group, color in palette.items():
         subset = labels[labels.label_group == group]
         ax.scatter(subset.r_age, subset.r_weight, s=35, color=color, label=group)
         for _, row in subset.iterrows():
-            ax.annotate(row.label, (row.r_age, row.r_weight), fontsize=8, xytext=(3, 3), textcoords="offset points")
+            texts.append(ax.text(row.r_age, row.r_weight, row.label, fontsize=8, color=color))
+            target_x.append(row.r_age)
+            target_y.append(row.r_weight)
+    adjust_text(
+        texts, x=target_x, y=target_y, target_x=target_x, target_y=target_y, ax=ax,
+        expand_points=(2.2, 2.2), expand_text=(1.8, 1.8), force_text=1.5, force_points=1.0, lim=500,
+        arrowprops=dict(arrowstyle="-", color="0.35", lw=.7, shrinkA=4, shrinkB=4),
+    )
     ax.axhline(0, color="black", linewidth=.5)
     ax.axvline(0, color="black", linewidth=.5)
     ax.set(xlabel="Spearman r (taxon vs age)", ylabel="Spearman r (taxon vs weight)")
+    ax.margins(x=.15, y=.15)
     ax.legend(frameon=False)
     fig.tight_layout()
     save(fig, output / "figure5_taxon_age_weight_spearman")
@@ -201,6 +210,35 @@ def render_figure6(source: Path, output: Path) -> None:
     save(fig, output / "figure6_bacterial_order_umap")
 
 
+def render_shannon_diversity(source: Path, output: Path) -> None:
+    """Render Shannon group plots without recomputing diversity values."""
+    specs = [
+        ("08_figure5_shannon/figure5_species_shannon_age_qc3.csv", "age_group",
+         ["Puppy (0–2)", "Adult (>2–7)", "Mature (>7)"], ["#ACDFFF", "#FFEB56", "#07D4A1"],
+         "Dog age group", "age", "figure5_species_shannon_by_age_group"),
+        ("08_figure5_shannon/figure5_species_shannon_weight_qc4.csv", "weight_group",
+         ["Small (<20 lb)", "Medium (20–<60 lb)", "Large (≥60 lb)"], ["#9ECAE1", "#74C476", "#FD8D3C"],
+         "Dog weight group", "weight", "figure5_species_shannon_by_weight_group"),
+    ]
+    for filename, group_col, order, colors, x_label, variable, stem in specs:
+        data = pd.read_csv(require(source, filename))
+        present = [group for group in order if (data[group_col].astype(str) == group).any()]
+        values = [data.loc[data[group_col].astype(str) == group, "shannon"].to_numpy() for group in present]
+        fig, ax = plt.subplots(figsize=(7.8, 5.2))
+        violin = ax.violinplot(values, showmeans=False, showmedians=True, showextrema=False)
+        for body, color in zip(violin["bodies"], colors):
+            body.set_facecolor(color); body.set_edgecolor("black"); body.set_alpha(.75)
+        ax.boxplot(values, widths=.13, patch_artist=True, boxprops={"facecolor": "white", "alpha": .85}, medianprops={"color": "black"})
+        rho, p = spearmanr(data[variable], data.shannon)
+        ax.set_xticks(range(1, len(present) + 1)); ax.set_xticklabels(present, fontsize=9)
+        ax.set(xlabel=x_label, ylabel="Species-level Shannon diversity")
+        ax.xaxis.label.set_size(11); ax.yaxis.label.set_size(11); ax.tick_params(axis="y", labelsize=9)
+        ax.text(.98, .97, f"Spearman $\\rho$ = {rho:.3f}\np = {p:.2g}", transform=ax.transAxes,
+                va="top", ha="right", fontsize=9, bbox={"facecolor": "white", "edgecolor": "none", "alpha": .82})
+        fig.tight_layout()
+        save(fig, output / stem)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", required=True, type=Path, help="Saved render-input directory")
@@ -213,6 +251,7 @@ def main() -> None:
     render_figure4(args.source, args.output)
     render_figure5(args.source, args.output)
     render_figure6(args.source, args.output)
+    render_shannon_diversity(args.source, args.output)
 
 
 if __name__ == "__main__":
