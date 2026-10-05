@@ -31,6 +31,10 @@ WEIGHT_INPUT = Path(os.environ.get("MICROBIOME_QC4_INPUT", QC4_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "08_figure5_shannon"
 
 
+def format_p(p: float) -> str:
+    return "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
+
+
 def species_relative_abundance(df: pd.DataFrame) -> pd.DataFrame:
     """Return direct species abundances, normalized within each sample."""
     cols = [
@@ -55,6 +59,7 @@ def group_plot(
     order: list[str],
     display_labels: list[str],
     x_label: str,
+    statistic_column: str,
     output_stem: Path,
 ) -> None:
     present = [group for group in order if (data[group_column].astype(str) == group).any()]
@@ -83,6 +88,10 @@ def group_plot(
     ax.xaxis.label.set_size(11)
     ax.yaxis.label.set_size(11)
     ax.tick_params(axis="y", labelsize=9)
+    rho, p = spearmanr(data[statistic_column], data["shannon"])
+    ax.text(.03, .97, f"Spearman ρ = {rho:.3f}\n{format_p(p)}", transform=ax.transAxes,
+            va="top", ha="left", fontsize=9,
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": .80, "pad": 1.5})
     fig.tight_layout()
     fig.savefig(output_stem.with_suffix(".png"), dpi=300, bbox_inches="tight")
     fig.savefig(output_stem.with_suffix(".pdf"), bbox_inches="tight")
@@ -103,7 +112,7 @@ def main() -> None:
     group_plot(
         age_table, group_column="age_group", order=["Puppy (0–2)", "Adult (>2–7)", "Mature (>7)"],
         display_labels=["Puppy", "Adult", "Mature"],
-        x_label="Dog Age Group",
+        x_label="Dog Age Group", statistic_column="age",
         output_stem=OUTDIR / "figure5_species_shannon_by_age_group",
     )
 
@@ -119,7 +128,7 @@ def main() -> None:
     group_plot(
         weight_table, group_column="weight_group", order=["Small (<20 lb)", "Medium (20–<60 lb)", "Large (≥60 lb)"],
         display_labels=["Small", "Medium", "Large"],
-        x_label="Dog Weight Group",
+        x_label="Dog Weight Group", statistic_column="weight",
         output_stem=OUTDIR / "figure5_species_shannon_by_weight_group",
     )
 

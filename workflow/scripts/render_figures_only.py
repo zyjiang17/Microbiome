@@ -50,6 +50,11 @@ def require(source: Path, name: str) -> Path:
     return path
 
 
+def format_p(p: float) -> str:
+    """Format a calculated p-value consistently across title-free figures."""
+    return "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
+
+
 def render_figure1(source: Path, output: Path) -> None:
     """Recreate only the visual clustering layout from saved order abundances."""
     order = pd.read_csv(require(source, "01_figure1/figure1_order_abundance_qc2_duplicates_1pct.csv"), index_col=0)
@@ -120,7 +125,8 @@ def render_figure2(source: Path, output: Path) -> None:
     ax.scatter(pseudo.age, pseudo.pseudotime, alpha=.5, edgecolors="none", s=10)
     ax.plot(curve[:, 0], curve[:, 1], color="#d55e00", linewidth=2)
     ax.set(xlabel="Age (years)", ylabel="Pseudotime (0–1)")
-    ax.text(.96, .03, f"ρ = {rho:.3f}\np = {p:.2g}", transform=ax.transAxes, va="bottom", ha="right")
+    ax.text(.96, .03, f"Spearman ρ = {rho:.3f}\n{format_p(p)}", transform=ax.transAxes,
+            va="bottom", ha="right")
     save(fig, output / "figure2_pseudotime_vs_age")
 
 
@@ -147,7 +153,7 @@ def render_figure4(source: Path, output: Path) -> None:
         ax.set_xlim(left=0)
         ax.set_ylim(-.05, 1)
         ax.set(xlabel="Age (years)", ylabel="MetaPhlAn relative abundance")
-        ax.text(.96, .96, f"Spearman ρ = {rho:.3f}\np = {p:.2g}", transform=ax.transAxes,
+        ax.text(.96, .96, f"Spearman ρ = {rho:.3f}\n{format_p(p)}", transform=ax.transAxes,
                 va="top", ha="right")
         save(fig, output / f"figure4_age_and_{genus.lower()}_abundance")
 
@@ -164,7 +170,7 @@ def render_figure5(source: Path, output: Path) -> None:
         ax.plot(line, line, "--", label="Ideal: y = x")
         ax.plot(line, intercept + slope * line, label="Trend")
         ax.set(xlabel=f"Actual {trait.lower()}", ylabel=f"Predicted {trait.lower()}")
-        ax.text(.05, .95, f"Nested CV\nρ = {r:.3f}\np = {p:.2g}", transform=ax.transAxes, va="top")
+        ax.text(.05, .95, f"Nested CV\nPearson r = {r:.3f}\n{format_p(p)}", transform=ax.transAxes, va="top")
         ax.legend(frameon=False)
         fig.tight_layout()
         save(fig, output / f"figure5_{trait.lower()}_enet_prediction")
@@ -215,12 +221,12 @@ def render_shannon_diversity(source: Path, output: Path) -> None:
     specs = [
         ("08_figure5_shannon/figure5_species_shannon_age_qc3.csv", "age_group",
          ["Puppy (0–2)", "Adult (>2–7)", "Mature (>7)"],
-         ["Puppy", "Adult", "Mature"], "Dog Age Group", "figure5_species_shannon_by_age_group"),
+         ["Puppy", "Adult", "Mature"], "Dog Age Group", "age", "figure5_species_shannon_by_age_group"),
         ("08_figure5_shannon/figure5_species_shannon_weight_qc4.csv", "weight_group",
          ["Small (<20 lb)", "Medium (20–<60 lb)", "Large (≥60 lb)"],
-         ["Small", "Medium", "Large"], "Dog Weight Group", "figure5_species_shannon_by_weight_group"),
+         ["Small", "Medium", "Large"], "Dog Weight Group", "weight", "figure5_species_shannon_by_weight_group"),
     ]
-    for filename, group_col, order, display_labels, x_label, stem in specs:
+    for filename, group_col, order, display_labels, x_label, statistic_column, stem in specs:
         data = pd.read_csv(require(source, filename))
         present = [group for group in order if (data[group_col].astype(str) == group).any()]
         values = [data.loc[data[group_col].astype(str) == group, "shannon"].to_numpy() for group in present]
@@ -240,6 +246,10 @@ def render_shannon_diversity(source: Path, output: Path) -> None:
         ax.set_xticks(range(1, len(present) + 1)); ax.set_xticklabels(display_labels, fontsize=9)
         ax.set(xlabel=x_label, ylabel="Shannon Diversity")
         ax.xaxis.label.set_size(11); ax.yaxis.label.set_size(11); ax.tick_params(axis="y", labelsize=9)
+        rho, p = spearmanr(data[statistic_column], data.shannon)
+        ax.text(.03, .97, f"Spearman ρ = {rho:.3f}\n{format_p(p)}", transform=ax.transAxes,
+                va="top", ha="left", fontsize=9,
+                bbox={"facecolor": "white", "edgecolor": "none", "alpha": .80, "pad": 1.5})
         fig.tight_layout()
         save(fig, output / stem)
 

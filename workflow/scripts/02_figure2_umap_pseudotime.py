@@ -32,6 +32,10 @@ OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "02_figure2"
 N_NEIGHBORS, MIN_DIST, SEED, PSEUDOTIME_K = 12, 0.25, 42, 10
 
 
+def format_p(p: float) -> str:
+    return "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
+
+
 def order_matrix(df: pd.DataFrame) -> pd.DataFrame:
     features = df.drop(columns=["sample_id", "age", "weight"])
     cols = [c for c in features if "|o__" in c and "|f__" not in c and "|o__OFGB" not in c]
@@ -93,7 +97,8 @@ def main() -> None:
     ax.scatter(age, pseudo, alpha=.5, edgecolors="none", s=10)
     ax.plot(curve[:, 0], curve[:, 1], color="red", linewidth=1)
     ax.set(xlabel="Age (years)", ylabel="Pseudotime (0-1)")
-    ax.text(.96, .03, f"ρ = {rho:.3f}\np < 0.001", transform=ax.transAxes, va="bottom", ha="right")
+    ax.text(.96, .03, f"Spearman ρ = {rho:.3f}\n{format_p(p)}", transform=ax.transAxes,
+            va="bottom", ha="right")
     fig.savefig(OUTDIR / "pseudotime_vs_age.pdf", bbox_inches="tight")
     plt.close(fig)
     audit = {"input": str(INPUT_FILE), "sha256": hashlib.sha256(INPUT_FILE.read_bytes()).hexdigest(),

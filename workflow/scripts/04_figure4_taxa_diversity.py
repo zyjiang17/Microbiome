@@ -24,6 +24,10 @@ INPUT_FILE = Path(os.environ.get("MICROBIOME_QC3_INPUT", QC3_INPUT_CSV))
 OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "04_figure4"
 
 
+def format_p(p: float) -> str:
+    return "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
+
+
 def genus_columns(df: pd.DataFrame) -> list[str]:
     return [c for c in df if "|g__" in c and "|s__" not in c and not c.split("|")[-1].startswith("g__GGB")]
 
@@ -36,6 +40,8 @@ def plot_trend(data: pd.DataFrame, genus: str, target: Path) -> tuple[float, flo
     ax.plot(fitted[:, 0], fitted[:, 1], color="red", linewidth=1.5)
     ax.set_xlim(left=0)
     ax.set_ylim(-.05, 1); ax.set(xlabel="Age (years)", ylabel="MetaPhlAn relative abundance")
+    ax.text(.96, .96, f"Spearman ρ = {rho:.3f}\n{format_p(p)}", transform=ax.transAxes,
+            va="top", ha="right")
     fig.savefig(target, bbox_inches="tight")
     plt.close(fig)
     return float(rho), float(p)
