@@ -266,8 +266,9 @@ def plot_predictions(outcomes: pd.DataFrame, trait: str) -> None:
         f"R² = {metrics['r2']:.3f}\nRMSE = {metrics['rmse']:.2f}",
         transform=ax.transAxes,
         va="top",
+        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.88, "pad": 2},
     )
-    ax.legend(frameon=False)
+    ax.legend(loc="lower right", frameon=True, framealpha=.88)
     fig.tight_layout()
     fig.savefig(OUTDIR / f"figure5_{trait.lower()}_enet_prediction_no_1pct.png")
     plt.close(fig)

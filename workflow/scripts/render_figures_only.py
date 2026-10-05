@@ -170,8 +170,9 @@ def render_figure5(source: Path, output: Path) -> None:
         ax.plot(line, line, "--", label="Ideal: y = x")
         ax.plot(line, intercept + slope * line, label="Trend")
         ax.set(xlabel=f"Actual {trait.lower()}", ylabel=f"Predicted {trait.lower()}")
-        ax.text(.05, .95, f"Nested CV\nPearson r = {r:.3f}\n{format_p(p)}", transform=ax.transAxes, va="top")
-        ax.legend(frameon=False)
+        ax.text(.05, .95, f"Nested CV\nPearson r = {r:.3f}\n{format_p(p)}", transform=ax.transAxes,
+                va="top", bbox={"facecolor": "white", "edgecolor": "none", "alpha": .88, "pad": 2})
+        ax.legend(loc="lower right", frameon=True, framealpha=.88)
         fig.tight_layout()
         save(fig, output / f"figure5_{trait.lower()}_enet_prediction")
 
