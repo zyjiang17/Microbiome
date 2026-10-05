@@ -262,7 +262,7 @@ def plot_predictions(outcomes: pd.DataFrame, trait: str) -> None:
     ax.text(
         0.05,
         0.95,
-        f"Nested CV\nPearson r = {metrics['r']:.3f}\n{format_p(metrics['p'])}\n"
+        f"Pearson r = {metrics['r']:.3f}\n{format_p(metrics['p'])}\n"
         f"R² = {metrics['r2']:.3f}\nRMSE = {metrics['rmse']:.2f}",
         transform=ax.transAxes,
         va="top",
