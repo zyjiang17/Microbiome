@@ -96,3 +96,7 @@ The present package is approximately 31 MB and can be uploaded as a normal Git r
   that explicitly use QC4.
 - The saved outputs in `analysis_outputs/` and `render_inputs/current/` record the exact coordinates and held-out predictions behind the distributed figures.
 - The final figures in `final_figures/` were produced by the render-only workflow from those saved values.
+- `supplementary_tables/genus_age_associations_qc3.csv` ranks all variable,
+  directly assigned genera in QC3 by absolute Spearman correlation with age
+  and reports abundance, prevalence, raw p-values, and Benjamini-Hochberg
+  adjusted q-values.

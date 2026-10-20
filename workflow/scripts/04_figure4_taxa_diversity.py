@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
+from statsmodels.stats.multitest import multipletests
 from statsmodels.nonparametric.smoothers_lowess import lowess
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,10 +48,45 @@ def plot_trend(data: pd.DataFrame, genus: str, target: Path) -> tuple[float, flo
     return float(rho), float(p)
 
 
+def rank_genus_age_associations(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
+    """Rank direct genus features by age association and representation."""
+    rows = []
+    for column in cols:
+        abundance = pd.to_numeric(df[column], errors="coerce").fillna(0.0)
+        if abundance.nunique() < 2:
+            continue
+        rho, p = spearmanr(df.age, abundance)
+        rows.append({
+            "genus": column.split("|g__")[-1],
+            "clade": column,
+            "n": int(len(df)),
+            "mean_relative_abundance": float(abundance.mean()),
+            "median_relative_abundance": float(abundance.median()),
+            "prevalence": float((abundance > 0).mean()),
+            "spearman_r": float(rho),
+            "abs_spearman_r": float(abs(rho)),
+            "spearman_p": float(p),
+        })
+    ranked = pd.DataFrame(rows)
+    ranked["spearman_q_bh"] = multipletests(ranked.spearman_p, method="fdr_bh")[1]
+    ranked["absolute_correlation_rank"] = (
+        ranked.abs_spearman_r.rank(method="min", ascending=False).astype(int)
+    )
+    ranked["mean_abundance_rank"] = (
+        ranked.mean_relative_abundance.rank(method="min", ascending=False).astype(int)
+    )
+    return ranked.sort_values(
+        ["absolute_correlation_rank", "mean_abundance_rank", "genus"]
+    ).reset_index(drop=True)
+
+
 def main() -> None:
     OUTDIR.mkdir(parents=True, exist_ok=True)
     df = pd.read_csv(INPUT_FILE, low_memory=False)
     cols = genus_columns(df)
+    rank_genus_age_associations(df, cols).to_csv(
+        OUTDIR / "supplementary_genus_age_associations_qc3.csv", index=False
+    )
     names = {}
     for genus in ("Conchiformibius", "Porphyromonas"):
         match = [c for c in cols if c.endswith(f"g__{genus}")]
