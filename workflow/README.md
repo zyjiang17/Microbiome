@@ -26,7 +26,7 @@ The pipeline uses a figure-specific cohort rather than a single matrix for all a
 | Dataset | Samples | Purpose |
 | --- | ---: | --- |
 | QC1 | 1,125 | Duplicate removal only; retained for provenance. |
-| QC2 | 1,125 | Duplicate removal plus 1% prevalence filtering; used for clustermap and UMAP analyses. |
+| QC2 | 1,125 | Duplicate removal plus 1% prevalence filtering; used to fit the initial dog-level UMAP and identify the excluded island/noise. |
 | QC3 | 1,043 | Duplicate removal plus exclusion of the designated UMAP island and DBSCAN noise; used for composition, genus-age trends, and age-group Shannon diversity. |
 | QC4 | 675 | QC3 exclusions with age ≥1 year; used for age prediction. Weight prediction and weight-group Shannon diversity use the 618 samples with recorded weight. |
 
@@ -38,7 +38,7 @@ The pipeline uses a figure-specific cohort rather than a single matrix for all a
 4. `03_figure3_composition.py` — order composition by age group using QC3.
 5. `04_figure4_taxa_diversity.py` — raw MetaPhlAn relative-abundance trends for *Porphyromonas* and *Conchiformibius* using QC3.
 6. `05_figure5_enet.py` — nested cross-validated Elastic Net models using QC4.
-7. `06_figure3_bacterial_umap.py` — bacterial-order UMAP using QC2.
+7. `06_figure3_bacterial_umap.py` — bacterial-order UMAP using QC3.
 8. `08_figure5_shannon_diversity.py` — species-level Shannon diversity by age group (QC3) and weight group (QC4 with recorded weight), without prevalence filtering.
 
 The Elastic Net workflow applies log10(abundance + 1e-6), standardization within the model pipeline, 10 outer folds, and 5 inner folds for parameter selection. The archived search grid is alpha = 1e-5 to 100 and L1 ratio = 0.2, 0.4, 0.6, or 0.8.
@@ -91,5 +91,8 @@ The present package is approximately 31 MB and can be uploaded as a normal Git r
 ## Reproducibility notes
 
 - UMAP analyses use fixed random seeds.
+- QC2 is used only to fit the initial dog-level UMAP and identify exclusions.
+  Downstream analyses use QC3, except the age-prediction sensitivity analyses
+  that explicitly use QC4.
 - The saved outputs in `analysis_outputs/` and `render_inputs/current/` record the exact coordinates and held-out predictions behind the distributed figures.
 - The final figures in `final_figures/` were produced by the render-only workflow from those saved values.

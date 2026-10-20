@@ -1,0 +1,7 @@
+species,oxygen_category,evidence_type,confidence,source_url,evidence_note,periodontal_association
+Neisseria_weaveri,aerobic,primary_species_description,high,https://pubmed.ncbi.nlm.nih.gov/8240951/,Strictly aerobic phenotype reported for 45 strains.,not_reviewed
+Neisseria_dumasiana,facultative,curated_observed_type_strain,moderate,https://bacdive.dsmz.de/strain/158278,Observed oxygen tolerance linked to reference 65274; do not use adjacent prediction rows.,not_reviewed
+Neisseria_shayeganii,microaerophilic,curated_observed_type_strain,moderate,https://bacdive.dsmz.de/strain/10496,Curated microaerophile description; genome predictions are a separate evidence class.,Decreased during progression to mild periodontitis in longitudinal dog study PMID 26507828
+Bergeyella_zoohelcum,aerobic,primary_case_report,moderate,https://pubmed.ncbi.nlm.nih.gov/17660147/,Described as aerobic in report; does not establish uniformity across all strains.,not_reviewed
+Porphyromonas_cangingivalis,anaerobic_unspecified,primary_species_description,moderate,https://pubmed.ncbi.nlm.nih.gov/7981097/,Anaerobic isolates described; do not upgrade to obligately anaerobic without explicit evidence.,not_reviewed
+Conchiformibius_steedae,unknown,culture_collection_growth_condition,low,https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip=CIP+103435,Aerobic incubation documented; growth condition alone does not establish obligate aerobic physiology.,not_reviewed

@@ -1,0 +1,22 @@
+[
+  {
+    "cohort": "qc3",
+    "samples": 1043,
+    "direct_species_features": 528,
+    "species_total_mean": 0.9311781026251198,
+    "species_total_min": 0.0463428,
+    "species_total_age_rho": 0.30887437213783103,
+    "species_total_age_p": 1.7150380326348692e-24,
+    "input_sha256": "5f0a086a7595a0630d15286ebd8b886deb77ae04ac065377058cb432a6464f5d"
+  },
+  {
+    "cohort": "qc4",
+    "samples": 675,
+    "direct_species_features": 528,
+    "species_total_mean": 0.9467747397570372,
+    "species_total_min": 0.6240908,
+    "species_total_age_rho": 0.27358611651002496,
+    "species_total_age_p": 4.715726450336618e-13,
+    "input_sha256": "29348984d6f4eb4485d8a422b537d5f8389e4f595e3a062c0b33c63be1c7d9ab"
+  }
+]

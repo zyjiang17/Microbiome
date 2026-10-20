@@ -1,0 +1,11 @@
+analysis_group,oxygen_phenotype,species_features,mean_original_abundance,share_of_direct_species_abundance
+anaerobic,anaerobe,13,0.2959416029482256,0.3178141776679743
+excluded,unknown,5,0.0279973700019174,0.030066611234724143
+excluded,unreviewed,488,0.032354020315433656,0.03474525466634509
+excluded,variable,1,0.0060057877689357,0.006449666022004366
+oxygen_tolerant,aerobe,5,0.29957136196356643,0.3217122064179074
+oxygen_tolerant,facultative_anaerobe,3,0.0803497230949183,0.0862882437510093
+oxygen_tolerant,microaerophile,8,0.1254690607315433,0.13474228010498665
+oxygen_tolerant,obligate_aerobe,1,0.0092988308667305,0.009986092714718975
+oxygen_tolerant,variable_aerobe_facultative_microaerophile,1,0.0047047793700862,0.00505250215487542
+oxygen_tolerant,variable_microaerophile_facultative,3,0.0494855655637582,0.05314296526545437

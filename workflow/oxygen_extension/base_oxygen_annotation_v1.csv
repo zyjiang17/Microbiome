@@ -1,0 +1,41 @@
+species,oxygen_phenotype,analysis_group,evidence_level,annotation_level,evidence_basis,source_url,notes
+Conchiformibius_steedae,aerobe,oxygen_tolerant,moderate,species,culture_collection_observed_growth,https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip=CIP+103435,Aerobic incubation documented; do not call obligate aerobe.
+Porphyromonas_cangingivalis,anaerobe,anaerobic,high,species,primary_species_description,https://pubmed.ncbi.nlm.nih.gov/7981097/,Original description reports anaerobic isolates.
+Bergeyella_zoohelcum,aerobe,oxygen_tolerant,high,species,curated_strain_and_primary_report,https://bacdive.dsmz.de/strain/5486,Strict aerobic culture records support an aerobic label.
+Porphyromonas_gulae,anaerobe,anaerobic,high,species,curated_observed_strains,https://bacdive.dsmz.de/strain/12507,Multiple observed records report anaerobe.
+Canicola_haemoglobinophilus,microaerophile,oxygen_tolerant,high,species,curated_observed_strain,https://bacdive.dsmz.de/strain/11712,Observed microaerophile record; ignore adjacent genome prediction.
+Neisseria_dumasiana,facultative_anaerobe,oxygen_tolerant,high,species,curated_observed_type_strain,https://bacdive.dsmz.de/strain/158278,Observed type-strain oxygen tolerance.
+Moraxella_sp_VT_16_12,aerobe,oxygen_tolerant,moderate,genus,genus_consensus_from_cultured_species,https://bacdive.dsmz.de/strain/8161,Unresolved species; keep lower confidence than species-resolved records.
+Porphyromonas_gingivicanis,anaerobe,anaerobic,moderate,genus,genus_consensus_and_cultivation,https://www.dsmz.de/collection/catalogue/microorganisms/catalogue,Genus-supported base call pending species-record verification.
+Frederiksenia_canicola,facultative_anaerobe,oxygen_tolerant,moderate,species,primary_description_and_anaerobic_biofilm_growth,https://doi.org/10.1007/s10482-014-0129-0,Can grow in an anaerobic canine oral biofilm; retain moderate confidence pending direct oxygen-tolerance record.
+Porphyromonas_canoris,anaerobe,anaerobic,moderate,genus,genus_consensus_and_cultivation,https://www.dsmz.de/collection/catalogue/microorganisms/catalogue,Genus-supported base call pending species-record verification.
+Porphyromonas_sp_COT_290_OH3588,anaerobe,anaerobic,low,genus,genus_inheritance,https://pubmed.ncbi.nlm.nih.gov/7981097/,Uncultured species feature; use only in broad sensitivity analysis.
+Capnocytophaga_cynodegmi,variable_microaerophile_facultative,oxygen_tolerant,high,species,curated_observed_strains,https://bacdive.dsmz.de/strain/5494,Observed records include microaerophile and facultative anaerobe.
+Pasteurella_dagmatis,variable_microaerophile_facultative,oxygen_tolerant,high,species,curated_observed_strains,https://bacdive.dsmz.de/strain/137580,Observed records differ between facultative anaerobe and microaerophile.
+Capnocytophaga_canimorsus,microaerophile,oxygen_tolerant,high,species,curated_observed_strains,https://bacdive.dsmz.de/strain/5493,Observed microaerophile records; ignore adjacent genome prediction.
+Tannerella_forsythia,anaerobe,anaerobic,high,species,curated_observed_dog_oral_strain,https://bacdive.dsmz.de/strain/155313,Dog oral-plaque strain recorded as anaerobe.
+Capnocytophaga_canis,microaerophile,oxygen_tolerant,moderate,genus,genus_and_species_cultivation_consensus,https://bacdive.dsmz.de/strain/5494,Base call pending direct species record verification.
+Neisseria_shayeganii,microaerophile,oxygen_tolerant,high,species,curated_observed_strain,https://bacdive.dsmz.de/strain/10495,Observed microaerophile record.
+Campylobacter_sp_CCUG_57310,microaerophile,oxygen_tolerant,moderate,genus,genus_defining_physiology,https://lpsn.dsmz.de/genus/campylobacter,Unresolved species; retain moderate confidence.
+Franklinella_schreckenbergeri,unknown,excluded,none,species,no_observed_oxygen_record,https://bacdive.dsmz.de/strain/166854,No observed oxygen-tolerance entry found.
+Neisseria_weaveri,obligate_aerobe,oxygen_tolerant,high,species,primary_species_description,https://pubmed.ncbi.nlm.nih.gov/8240951/,Strictly aerobic phenotype reported for 45 strains.
+Staphylococcus_pseudintermedius,aerobe,oxygen_tolerant,moderate,species,curated_observed_strains,https://bacdive.dsmz.de/strain/14670,BacDive records aerobe; aerobic versus facultative wording should remain distinct.
+Pasteurella_canis,microaerophile,oxygen_tolerant,high,species,curated_observed_type_strain,https://bacdive.dsmz.de/strain/11730,Type strain isolated from dog throat.
+Streptobacillus_canis,microaerophile,oxygen_tolerant,moderate,genus,genus_consensus_and_species_description,https://doi.org/10.1099/ijsem.0.004086,Retain moderate confidence pending direct strain record.
+Mycoplasmopsis_canis,unknown,excluded,none,species,prediction_only,https://bacdive.dsmz.de/strain/168855,Only genome prediction found; exclude from evidence-restricted analysis.
+Schaalia_canis,variable_microaerophile_facultative,oxygen_tolerant,high,species,curated_observed_strains,https://bacdive.dsmz.de/strain/180,Observed records include microaerophile and facultative anaerobe.
+Porphyromonas_sp_COT_239_OH1446,anaerobe,anaerobic,low,genus,genus_inheritance,https://pubmed.ncbi.nlm.nih.gov/7981097/,Uncultured species feature; use only in broad sensitivity analysis.
+Alloprevotella_sp_OH1205_COT_284,anaerobe,anaerobic,low,genus,genus_inheritance,https://lpsn.dsmz.de/genus/alloprevotella,Uncultured species feature; use only in broad sensitivity analysis.
+Neisseria_zoodegmatis,variable,excluded,low,species,incomplete_or_conflicting_records,https://bacdive.dsmz.de/strain/10494,Do not infer from Neisseria genus.
+Desulfomicrobium_orale,anaerobe,anaerobic,moderate,genus,sulfate_reducer_genus_consensus,https://lpsn.dsmz.de/genus/desulfomicrobium,Species-specific observed record still needed.
+Vandammella_animalimorsus,unknown,excluded,none,species,no_observed_oxygen_record,https://bacdive.dsmz.de/advsearch,No usable observed oxygen record found.
+Neisseria_animaloris,variable_aerobe_facultative_microaerophile,oxygen_tolerant,high,species,curated_observed_strains,https://bacdive.dsmz.de/strain/10493,Observed records span obligate aerobe facultative anaerobe and microaerophile.
+Mycoplasmopsis_edwardii,unknown,excluded,none,species,not_reviewed,,Requires species-specific evidence review.
+Treponema_sp_OMZ_787,anaerobe,anaerobic,moderate,genus,oral_treponeme_consensus,https://lpsn.dsmz.de/genus/treponema,Unresolved species; keep genus-inherited call out of strict analysis.
+Pasteurella_multocida,facultative_anaerobe,oxygen_tolerant,moderate,species,species_consensus,https://bacdive.dsmz.de/strain/11729,Retain moderate confidence until an observed record is linked directly.
+Desulfovibrio_sp_OH1186_COT_070,anaerobe,anaerobic,moderate,genus,sulfate_reducer_genus_consensus,https://lpsn.dsmz.de/genus/desulfovibrio,Unresolved species; use as genus-supported annotation.
+Neisseria_canis,aerobe,oxygen_tolerant,high,species,curated_observed_type_strain,https://bacdive.dsmz.de/strain/10485,Type strain isolated from dog oral mucosa.
+Campylobacter_sp_RM16187,microaerophile,oxygen_tolerant,moderate,genus,genus_defining_physiology,https://lpsn.dsmz.de/genus/campylobacter,Unresolved species; retain moderate confidence.
+Porphyromonas_crevioricanis,anaerobe,anaerobic,moderate,genus,genus_consensus_and_cultivation,https://www.dsmz.de/collection/catalogue/microorganisms/catalogue,Genus-supported base call pending species-record verification.
+Treponema_sp_OMZ_798,anaerobe,anaerobic,moderate,genus,oral_treponeme_consensus,https://lpsn.dsmz.de/genus/treponema,Unresolved species; keep genus-inherited call out of strict analysis.
+Actinomyces_weissii,unknown,excluded,none,species,not_reviewed,,Do not inherit a single oxygen label from Actinomyces.

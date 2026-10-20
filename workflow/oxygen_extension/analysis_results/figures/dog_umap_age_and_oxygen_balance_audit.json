@@ -1,0 +1,12 @@
+{
+  "coordinate_file": "workflow/analysis_outputs/02_figure2/dog_umap_coordinates.csv",
+  "oxygen_file": "workflow/oxygen_extension/analysis_results/oxygen_group_abundance_qc3_expanded.csv",
+  "umap_was_refit": false,
+  "qc2_coordinate_samples": 1125,
+  "qc3_oxygen_matched_samples": 1043,
+  "qc2_only_gray_samples": 82,
+  "oxygen_log_ratio_min": -1.4654184205013419,
+  "oxygen_log_ratio_max": 6.000000477723668,
+  "output_png": "workflow/oxygen_extension/analysis_results/figures/dog_umap_age_and_oxygen_balance.png",
+  "output_pdf": "workflow/oxygen_extension/analysis_results/figures/dog_umap_age_and_oxygen_balance.pdf"
+}
