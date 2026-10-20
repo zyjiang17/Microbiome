@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bacterial-order UMAP using the cluster/noise-excluded QC3 cohort."""
 from __future__ import annotations
-import os, sys
+import hashlib, json, os, platform, sys
 from pathlib import Path
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
 os.environ.setdefault("XDG_CACHE_HOME", "/tmp")
@@ -37,6 +37,21 @@ def main() -> None:
     # Preserve the embedding so subsequent publication-format renders do not
     # need to repeat UMAP fitting.
     summary.to_csv(OUTDIR / "bacterial_order_umap_coordinates.csv", index=False)
+    audit = {
+        "cohort": "QC3",
+        "python_version": platform.python_version(),
+        "input_file": INPUT_FILE.name,
+        "input_sha256": hashlib.sha256(INPUT_FILE.read_bytes()).hexdigest(),
+        "samples": int(len(df)),
+        "direct_orders": int(len(cols)),
+        "umap_metric": "correlation",
+        "n_neighbors": 12,
+        "min_dist": 0.25,
+        "random_seed": 42,
+    }
+    (OUTDIR / "bacterial_order_umap_audit.json").write_text(
+        json.dumps(audit, indent=2) + "\n"
+    )
     size = 30 + 330 * np.sqrt(summary.mean_abundance / summary.mean_abundance.max())
     fig, ax = plt.subplots(figsize=(9.5, 7.5))
     points = ax.scatter(summary.UMAP1, summary.UMAP2, c=summary.spearman_r, cmap="RdBu_r", s=size,

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import os
 from pathlib import Path
 
@@ -30,6 +31,18 @@ AGE_DISPLAY = ["Puppy\n(0–2)", "Adult\n(>2–7)", "Mature\n(>7)"]
 def read_rows(path: Path) -> list[dict[str, str]]:
     with path.open(newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def validate_qc3_umap(path: Path) -> None:
+    audit_path = path.with_name("bacterial_order_umap_audit.json")
+    if not audit_path.exists():
+        raise RuntimeError(
+            f"Missing QC3 UMAP audit: {audit_path}. "
+            "Regenerate Figure 3A before rendering the combined figure."
+        )
+    audit = json.loads(audit_path.read_text())
+    if audit.get("cohort") != "QC3":
+        raise RuntimeError(f"Figure 3A provenance is not QC3: {audit}")
 
 
 def short_age_group(value: str) -> str:
@@ -175,6 +188,7 @@ def main() -> None:
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
 
+    validate_qc3_umap(args.taxon_umap)
     taxon_umap_rows = read_rows(args.taxon_umap)
     oxygen_rows = prepare_species_composition(read_rows(args.oxygen))
     sample_oxygen_rows = read_rows(args.sample_oxygen)
