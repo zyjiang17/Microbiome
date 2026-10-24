@@ -1,0 +1,5 @@
+# Local copies of archived ChatGPT Library packages; extracted, versioned
+# workflow files live under humann_functional/.
+humann_inputs/library_packages/
+__pycache__/
+*.py[cod]

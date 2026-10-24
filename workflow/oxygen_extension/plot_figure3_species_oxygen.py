@@ -14,6 +14,7 @@ os.environ.setdefault("MPLBACKEND", "Agg")
 
 import matplotlib.pyplot as plt
 import numpy as np
+from statsmodels.nonparametric.smoothers_lowess import lowess
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +28,14 @@ DEFAULT_OUTPUT = ROOT / "oxygen_extension/analysis_results/figures"
 
 AGE_GROUPS = ["Puppy", "Adult", "Mature"]
 AGE_DISPLAY = ["Puppy\n(0–2)", "Adult\n(>2–7)", "Mature\n(>7)"]
+OXYGEN_COLORS = {
+    "Obligate aerobe": "#0072B2",
+    "Aerobe": "#56B4E9",
+    "Facultative anaerobe": "#009E73",
+    "Microaerophile": "#E69F00",
+    "Variable oxygen-tolerant": "#CC79A7",
+    "Anaerobe": "#D55E00",
+}
 
 def read_rows(path: Path) -> list[dict[str, str]]:
     with path.open(newline="") as handle:
@@ -179,6 +188,24 @@ def sample_level_panel(ax, rows: list[dict[str, str]], panel_label: str = "B") -
     ax.text(0.01, 0.99, panel_label, transform=ax.transAxes, va="top", fontweight="bold")
 
 
+def multicategory_age_panel(ax, rows: list[dict[str, str]], panel_label: str = "B") -> None:
+    """Reproduce the expanded oxygen-category age trends for Figure 3B."""
+    categories = list(OXYGEN_COLORS)
+    age = np.asarray([float(row["age"]) for row in rows])
+    order = np.argsort(age)
+    for category in categories:
+        abundance = 100.0 * np.asarray([float(row[category]) for row in rows])
+        smooth = lowess(abundance[order], age[order], frac=0.42, it=0, return_sorted=True)
+        ax.plot(smooth[:, 0], np.maximum(smooth[:, 1], 0), linewidth=2.2,
+                color=OXYGEN_COLORS[category], label=category)
+    ax.set(xlabel="Age (years)", ylabel="Original MetaPhlAn relative abundance (%)", xlim=(0, 17))
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.grid(axis="y", alpha=.2)
+    ax.legend(frameon=False, ncol=2, fontsize=8.2, loc="upper center",
+              bbox_to_anchor=(.5, 1.15))
+    ax.text(0.01, 0.99, panel_label, transform=ax.transAxes, va="top", fontweight="bold")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--taxon-umap", type=Path, default=DEFAULT_TAXON_UMAP)
@@ -204,13 +231,13 @@ def main() -> None:
     fig.savefig(stem.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(fig)
 
-    # Combined Figure 3: taxon UMAP (A) and one point per dog (B).
+    # Combined Figure 3 requested at the meeting: bacterial UMAP (A) and the
+    # expanded oxygen-category age trends (B).
     fig, axes = plt.subplots(1, 2, figsize=(17.5, 7.2), gridspec_kw={"width_ratios": [1.2, 1]})
     taxon_umap_panel(fig, axes[0], taxon_umap_rows)
-    sample_level_panel(axes[1], sample_oxygen_rows)
-    axes[1].legend(frameon=False, loc="upper right")
-    fig.tight_layout()
-    stem = args.output / "figure3_taxon_umap_and_sample_oxygen_fraction"
+    multicategory_age_panel(axes[1], sample_oxygen_rows)
+    fig.tight_layout(rect=[0, 0, 1, .96])
+    stem = args.output / "figure3_bacterial_umap_and_oxygen_age_trends"
     fig.savefig(stem.with_suffix(".png"), dpi=300, bbox_inches="tight")
     fig.savefig(stem.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(fig)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figure 1 clustermap: QC2 input with oxygen-preference order annotations."""
+"""Figure 1 clustermap: QC2 input without order-level oxygen annotations."""
 
 from __future__ import annotations
 
@@ -29,32 +29,6 @@ OUTDIR = Path(os.environ.get("MICROBIOME_OUTPUT", OUTPUT_ROOT)) / "01_figure1"
 META_COLS = {"sample_id", "age", "weight"}
 
 AGE_PALETTE = {"Puppy": "#ACDFFF", "Adult": "#FFEB56", "Mature": "#07D4A1"}
-AerobicFacultative = {
-    "Neisseriales",
-    "Pasteurellales",
-    "Lactobacillales",
-    "Bacillales",
-    "Micrococcales",
-    "Corynebacteriales",
-    "Burkholderiales",
-    "Flavobacteriales",
-    "Mycoplasmatales",
-}
-ANAEROBIC_ORDERS = {
-    "Bacteroidales",
-    "Campylobacterales",
-    "Fusobacteriales",
-    "Spirochaetales",
-    "Erysipelotrichales",
-    "Clostridiales",
-    "Eubacteriales",
-    "Desulfovibrionales",
-    "Synergistales",
-    "Tissierellales",
-    "Veillonellales",
-}
-
-
 def taxa_matrix(df: pd.DataFrame) -> pd.DataFrame:
     taxa_cols = [c for c in df.columns if c not in META_COLS]
     return df[taxa_cols].apply(pd.to_numeric, errors="coerce").fillna(0)
@@ -88,14 +62,6 @@ def age_groups(df: pd.DataFrame) -> pd.Series:
     )
 
 
-def order_category(order: str) -> str:
-    if order in AerobicFacultative:
-        return "aerobic"
-    if order in ANAEROBIC_ORDERS:
-        return "anaerobic"
-    return "other"
-
-
 def main() -> None:
     OUTDIR.mkdir(parents=True, exist_ok=True)
     df = pd.read_csv(INPUT_FILE)
@@ -108,11 +74,6 @@ def main() -> None:
     order.to_csv(OUTDIR / "figure1_order_abundance_qc2_duplicates_1pct.csv")
 
     plot_mat = np.log10(order + 1e-5).T
-    row_colors = [
-        "#1F77B4" if order_category(t) == "aerobic" else "#D62728" if order_category(t) == "anaerobic" else "#D0D2D3"
-        for t in plot_mat.index
-    ]
-
     meta = df[["sample_id", "age"]].copy()
     meta["age_group"] = age_groups(meta)
     meta = meta.drop_duplicates("sample_id")
@@ -124,16 +85,17 @@ def main() -> None:
     row_order = leaves_list(row_linkage)
     col_order = leaves_list(col_linkage)
     ordered = plot_mat.iloc[row_order, col_order]
-    ordered_row_colors = [row_colors[i] for i in row_order]
     ordered_col_colors = [col_colors[i] for i in col_order]
 
     fig = plt.figure(figsize=(18, 11), dpi=300)
     ax_cbar = fig.add_axes([0.02, 0.78, 0.04, 0.15])
-    ax_col_dend = fig.add_axes([0.20, 0.755, 0.70, 0.16])
-    ax_col_colors = fig.add_axes([0.20, 0.718, 0.70, 0.030])
+    # The column dendrogram, age strip, and heatmap must have exactly the same
+    # horizontal extent.  A previous layout started the two upper axes 0.02 to
+    # the right and made the age annotation appear assigned to the wrong dogs.
+    ax_col_dend = fig.add_axes([0.18, 0.755, 0.72, 0.16])
+    ax_col_colors = fig.add_axes([0.18, 0.718, 0.72, 0.030])
     ax_row_dend = fig.add_axes([0.015, 0.10, 0.16, 0.61])
-    ax_row_colors = fig.add_axes([0.17, 0.10, 0.03, 0.61])
-    ax_heatmap = fig.add_axes([0.20, 0.10, 0.70, 0.61])
+    ax_heatmap = fig.add_axes([0.18, 0.10, 0.72, 0.61])
 
     dendrogram(
         col_linkage,
@@ -162,10 +124,8 @@ def main() -> None:
             spine.set_visible(False)
 
     col_lookup = {color: i for i, color in enumerate(dict.fromkeys(ordered_col_colors))}
-    row_lookup = {color: i for i, color in enumerate(dict.fromkeys(ordered_row_colors))}
     ax_col_colors.imshow([[col_lookup[c] for c in ordered_col_colors]], aspect="auto", cmap=ListedColormap(list(col_lookup)))
-    ax_row_colors.imshow([[row_lookup[c]] for c in ordered_row_colors], aspect="auto", cmap=ListedColormap(list(row_lookup)))
-    for ax in [ax_col_colors, ax_row_colors]:
+    for ax in [ax_col_colors]:
         ax.set_xticks([])
         ax.set_yticks([])
         for spine in ax.spines.values():
@@ -180,18 +140,12 @@ def main() -> None:
     ax_heatmap.set_yticklabels(ordered.index)
     ax_heatmap.yaxis.tick_right()
     ax_heatmap.tick_params(axis="y", labelright=True, labelleft=False, right=True, left=False)
-    for tick in ax_heatmap.get_yticklabels():
-        category = order_category(tick.get_text())
-        tick.set_color("#1F77B4" if category == "aerobic" else "#D62728" if category == "anaerobic" else "black")
     plt.setp(ax_heatmap.get_yticklabels(), fontsize=12)
 
     handles = [
         Patch(facecolor=AGE_PALETTE["Puppy"], label="Puppy (0-2)"),
         Patch(facecolor=AGE_PALETTE["Adult"], label="Adult (2-7)"),
         Patch(facecolor=AGE_PALETTE["Mature"], label="Mature (7+)"),
-        Patch(facecolor="#1F77B4", label="Aerobic / Facultative\n(health-associated)"),
-        Patch(facecolor="#D62728", label="Anaerobic\n(disease-associated)"),
-        Patch(facecolor="#B0BEC5", label="Other / non-core"),
     ]
     fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.09, 0.93), frameon=False, fontsize=10)
     fig.savefig(OUTDIR / "figure1_order_clustermap_qc2_duplicates_1pct.png", dpi=300, bbox_inches="tight")

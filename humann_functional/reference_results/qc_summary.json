@@ -1,0 +1,16 @@
+{
+  "n_samples_abundance": 695,
+  "n_samples_coverage": 695,
+  "n_unique_ids": 695,
+  "n_with_age": 695,
+  "n_with_weight": 626,
+  "n_age_below_1": 162,
+  "n_age_ge_1": 533,
+  "n_unstratified_pathways": 458,
+  "n_tested_prevalence_ge_10pct": 309,
+  "n_unstratified_coverage_features_including_unmapped_unintegrated": 460,
+  "max_abs_cpm_sum_minus_1m": 0.5981000004103407,
+  "coverage_out_of_range_count": 0,
+  "missing_pd_severity": true,
+  "notes": "No read-count manifest provided; 695 rows cannot be reconciled to reported n=625."
+}

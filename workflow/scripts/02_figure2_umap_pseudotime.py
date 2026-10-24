@@ -66,6 +66,13 @@ def main() -> None:
     dbscan = DBSCAN(eps=.55, min_samples=10).fit_predict(embedding)
     result["dbscan_cluster"] = dbscan
     result.to_csv(OUTDIR / "dog_umap_coordinates.csv", index=False)
+    # Keep the secondary cluster and noise separate.  The combined legacy file
+    # obscured the difference between the 78-dog current-run cluster, two
+    # DBSCAN noise points, and the historical 79-dog exclusion manifest.
+    result.loc[result.dbscan_cluster == 1].to_csv(
+        OUTDIR / "dog_umap_other_cluster_current_run.csv", index=False)
+    result.loc[result.dbscan_cluster == -1].to_csv(
+        OUTDIR / "dog_umap_noise_current_run.csv", index=False)
     result.loc[result.dbscan_cluster.isin([1, -1]), ["sample_id", "dbscan_cluster"]].to_csv(
         OUTDIR / "cluster1_and_minus1_samples.csv", index=False)
 

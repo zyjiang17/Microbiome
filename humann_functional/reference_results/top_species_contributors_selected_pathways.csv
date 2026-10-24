@@ -1,0 +1,70 @@
+pathway,taxon,total_stratified_cpm,fraction_of_total_stratified_attribution,median_stratified_over_unstratified_ratio_across_detected_samples
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Moraxella.s__Moraxella_sp_VT_16_12,288348.2017,0.27360247032765317,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Neisseria.s__Neisseria_dumasiana,149935.95102,0.14226843222236754,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Haemophilus.s__Haemophilus_haemoglobinophilus,128187.1026,0.12163179006746111,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Serratia.s__Serratia_ureilytica,93883.07160000001,0.08908202014185802,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Pasteurella.s__Pasteurella_dagmatis,87075.8504,0.0826229108933651,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Serratia.s__Serratia_liquefaciens,48354.37699999999,0.04588160051061853,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Neisseria.s__Neisseria_weaveri,46786.2399,0.044393655790162724,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Neisseria.s__Neisseria_shayeganii,39934.37518,0.03789218603002413,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Staphylococcus.s__Staphylococcus_pseudintermedius,37936.5449,0.03599652204918167,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Pasteurella.s__Pasteurella_canis,24036.4496,0.02280725854953765,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Serratia.s__Serratia_nematodiphila,20629.30539,0.019574351019257877,0.32156359923773925
+PWY-6936: seleno-amino acid biosynthesis (plants),g__Klebsiella.s__Klebsiella_oxytoca,18444.31091,0.01750109415878242,0.32156359923773925
+COLANSYN-PWY: colanic acid building blocks biosynthesis,g__Enterobacter.s__Enterobacter_mori,1064.0,0.2890308448067351,0.0
+COLANSYN-PWY: colanic acid building blocks biosynthesis,g__Escherichia.s__Escherichia_coli,949.7349999999999,0.25799126822605684,0.0
+COLANSYN-PWY: colanic acid building blocks biosynthesis,g__Citrobacter.s__Citrobacter_freundii,807.357,0.2193149208370594,0.0
+COLANSYN-PWY: colanic acid building blocks biosynthesis,g__Pseudomonas.s__Pseudomonas_sp_URMO17WK12_I2,449.371,0.12206962383613472,0.0
+COLANSYN-PWY: colanic acid building blocks biosynthesis,g__Enterobacter.s__Enterobacter_bugandensis,410.805,0.11159334229401391,0.0
+FUCCAT-PWY: fucose degradation,g__Haemophilus.s__Haemophilus_haemoglobinophilus,308780.8587,0.8045060328457236,0.11851795582119658
+FUCCAT-PWY: fucose degradation,g__Pasteurella.s__Pasteurella_dagmatis,71451.4613,0.18616157722179671,0.11851795582119658
+FUCCAT-PWY: fucose degradation,g__Escherichia.s__Escherichia_coli,1278.9467,0.0033322024563633675,0.11851795582119658
+FUCCAT-PWY: fucose degradation,g__Pasteurella.s__Pasteurella_multocida,1108.4723,0.0028880438261193776,0.11851795582119658
+FUCCAT-PWY: fucose degradation,g__Citrobacter.s__Citrobacter_freundii,958.165,0.0024964291057644594,0.11851795582119658
+FUCCAT-PWY: fucose degradation,g__Enterobacter.s__Enterobacter_hormaechei,120.915,0.00031503522391603705,0.11851795582119658
+FUCCAT-PWY: fucose degradation,g__Klebsiella.s__Klebsiella_oxytoca,115.405,0.0003006793203161746,0.11851795582119658
+PWY-5030: L-histidine degradation III,g__Porphyromonas.s__Porphyromonas_gulae,918807.2156,0.8558591646538333,0.33068244844305855
+PWY-5030: L-histidine degradation III,g__Tannerella.s__Tannerella_forsythia,122201.4105,0.11382931624209393,0.33068244844305855
+PWY-5030: L-histidine degradation III,g__Bacteroides.s__Bacteroides_heparinolyticus,12330.377400000001,0.01148561561365094,0.33068244844305855
+PWY-5030: L-histidine degradation III,g__Porphyromonas.s__Porphyromonas_macacae,9151.3713,0.008524405188895282,0.33068244844305855
+PWY-5030: L-histidine degradation III,g__Porphyromonas.s__Porphyromonas_gingivalis,5156.0569000000005,0.004802812250946404,0.33068244844305855
+PWY-5030: L-histidine degradation III,g__Fusobacterium.s__Fusobacterium_nucleatum,4163.8639,0.003878595007396732,0.33068244844305855
+PWY-5030: L-histidine degradation III,g__Fusobacterium.s__Fusobacterium_periodonticum,1256.623,0.0011705309806067158,0.33068244844305855
+PWY-5030: L-histidine degradation III,g__Peptoniphilus.s__Peptoniphilus_sp_oral_taxon_386,482.625,0.00044956006257669654,0.33068244844305855
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Haemophilus.s__Haemophilus_haemoglobinophilus,1021011.3737,0.8665347817808173,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Serratia.s__Serratia_ureilytica,54663.893500000006,0.04639337645540309,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Serratia.s__Serratia_liquefaciens,41026.65299999999,0.0348194180009185,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Staphylococcus.s__Staphylococcus_pseudintermedius,28721.3989,0.024375919572825526,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Serratia.s__Serratia_marcescens,14843.24534,0.012597497631201984,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Serratia.s__Serratia_nematodiphila,8546.53785,0.007253467004969218,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Klebsiella.s__Klebsiella_oxytoca,7881.30737,0.006688884314051885,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Serratia.s__Serratia_plymuthica,1225.09,0.001039736797411801,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Streptococcus.s__Streptococcus_mitis,219.859,0.00018659485633068686,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Streptococcus.s__Streptococcus_oralis,107.733,9.143325339000854e-05,0.49524418493975964
+PWY-7356: thiamine diphosphate salvage IV (yeast),g__Staphylococcus.s__Staphylococcus_aureus,22.2579,1.889033268013952e-05,0.49524418493975964
+PWY-7977: L-methionine biosynthesis IV,g__Haemophilus.s__Haemophilus_haemoglobinophilus,701456.47107,0.43396959115454103,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Moraxella.s__Moraxella_sp_VT_16_12,239398.97269999998,0.14810879732417284,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Serratia.s__Serratia_ureilytica,149982.80038,0.09278975566628776,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Pasteurella.s__Pasteurella_dagmatis,103813.34904999999,0.06422613305554113,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Serratia.s__Serratia_liquefaciens,94143.36290000001,0.05824360939361773,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Serratia.s__Serratia_marcescens,48892.5209,0.030248302183487126,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Serratia.s__Serratia_nematodiphila,48315.163100000005,0.02989110863157123,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Pasteurella.s__Pasteurella_canis,44791.76640000001,0.027711291225308153,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Tannerella.s__Tannerella_forsythia,39001.9962,0.0241293380889431,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Xanthomonadaceae_unclassified.s__Xanthomonadaceae_bacterium_NML07_0707,29218.5225,0.01807660316273481,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Xanthomonadaceae_unclassified.s__Xanthomonadaceae_bacterium_NML95_0200,21273.242530000003,0.013161102283642942,0.22494032560986998
+PWY-7977: L-methionine biosynthesis IV,g__Klebsiella.s__Klebsiella_oxytoca,21027.471380000003,0.01300905121578354,0.22494032560986998
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Haemophilus.s__Haemophilus_haemoglobinophilus,462631.82918,0.3991724952976896,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Neisseria.s__Neisseria_dumasiana,136904.38160999998,0.11812517033536897,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Serratia.s__Serratia_ureilytica,113621.84956,0.09803630954142016,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Pasteurella.s__Pasteurella_dagmatis,107591.19852,0.09283288454540721,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Serratia.s__Serratia_liquefaciens,66022.90000000001,0.05696652084337211,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Neisseria.s__Neisseria_weaveri,52259.212799999994,0.045090802361444554,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Pasteurella.s__Pasteurella_canis,34743.1703,0.029977440176965513,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Neisseria.s__Neisseria_shayeganii,32666.6856,0.028185787448238162,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Staphylococcus.s__Staphylococcus_pseudintermedius,29900.183,0.025798766762595102,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Klebsiella.s__Klebsiella_oxytoca,21558.153870000002,0.018601016038071305,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Serratia.s__Serratia_nematodiphila,17049.053519999998,0.014710430209924834,0.27561664500256805
+THRESYN-PWY: superpathway of L-threonine biosynthesis,g__Serratia.s__Serratia_marcescens,16088.596739999999,0.013881719547760222,0.27561664500256805
+PWY-6467: Kdo transfer to lipid IVA III (Chlamydia),g__Porphyromonas.s__Porphyromonas_gulae,956146.9769,0.995629681519002,1.0
+PWY-6467: Kdo transfer to lipid IVA III (Chlamydia),g__Porphyromonas.s__Porphyromonas_gingivalis,4197.00907,0.004370318480998026,1.0

@@ -20,13 +20,30 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib-dog-oxygen")
 os.environ.setdefault("MPLBACKEND", "Agg")
 
 import matplotlib.pyplot as plt
-from matplotlib.colors import TwoSlopeNorm
+from matplotlib.colors import LinearSegmentedColormap, Normalize
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_COORDS = ROOT / "analysis_outputs/02_figure2/dog_umap_coordinates.csv"
 DEFAULT_OXYGEN = ROOT / "oxygen_extension/analysis_results/oxygen_group_abundance_qc3_expanded.csv"
 DEFAULT_OUTPUT = ROOT / "oxygen_extension/analysis_results/figures"
+OXYGEN_VMIN = -1.0
+OXYGEN_VMAX = 6.0
+
+# Zero is deliberately placed at 1/7 of the color bar, where it belongs on the
+# requested -1 to 6 data scale.  This preserves a visible anaerobe/aerobe
+# transition without falsely allocating half of the color range to the much
+# shorter negative interval.
+OXYGEN_CMAP = LinearSegmentedColormap.from_list(
+    "oxygen_balance_asymmetric",
+    [
+        (0.00, "#8c2d04"),
+        (1.0 / 7.0, "#f2f2f2"),
+        (0.34, "#9ecae1"),
+        (0.67, "#3182bd"),
+        (1.00, "#08306b"),
+    ],
+)
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -70,7 +87,7 @@ def main() -> None:
 
     ratio_min, ratio_max = min(log_ratio), max(log_ratio)
     if not ratio_min < 0 < ratio_max:
-        raise ValueError("The oxygen log-ratio must span zero for a centered diverging scale")
+        raise ValueError("The oxygen log-ratio must span zero")
 
     fig, axes = plt.subplots(1, 2, figsize=(14.5, 6.2), sharex=True, sharey=True)
     for ax in axes:
@@ -96,8 +113,8 @@ def main() -> None:
         [x[i] for i in matched],
         [y[i] for i in matched],
         c=log_ratio,
-        cmap="coolwarm_r",
-        norm=TwoSlopeNorm(vmin=ratio_min, vcenter=0.0, vmax=ratio_max),
+        cmap=OXYGEN_CMAP,
+        norm=Normalize(vmin=OXYGEN_VMIN, vmax=OXYGEN_VMAX, clip=True),
         s=24,
         alpha=0.9,
         edgecolor="black",
@@ -124,6 +141,9 @@ def main() -> None:
         "qc2_only_gray_samples": len(unmatched),
         "oxygen_log_ratio_min": ratio_min,
         "oxygen_log_ratio_max": ratio_max,
+        "oxygen_color_scale_min": OXYGEN_VMIN,
+        "oxygen_color_scale_max": OXYGEN_VMAX,
+        "oxygen_zero_color_position": (0.0 - OXYGEN_VMIN) / (OXYGEN_VMAX - OXYGEN_VMIN),
         "output_png": str(stem.with_suffix(".png")),
         "output_pdf": str(stem.with_suffix(".pdf")),
     }

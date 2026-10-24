@@ -1,0 +1,28 @@
+pathway,species,cumulative_assigned_cpm,share_of_assigned_taxonomic_contributions,overall_taxonomic_attribution_to_community_abundance
+PWY-5030: L-histidine degradation III,g__Porphyromonas.s__Porphyromonas_gulae,918807.2156,0.8558591646538332,0.4514296361459015
+PWY-5030: L-histidine degradation III,g__Tannerella.s__Tannerella_forsythia,122201.4105,0.1138293162420939,0.4514296361459015
+PWY-5030: L-histidine degradation III,g__Bacteroides.s__Bacteroides_heparinolyticus,12330.377400000001,0.011485615613650938,0.4514296361459015
+PWY-5030: L-histidine degradation III,g__Porphyromonas.s__Porphyromonas_macacae,9151.3713,0.00852440518889528,0.4514296361459015
+PWY-5030: L-histidine degradation III,g__Porphyromonas.s__Porphyromonas_gingivalis,5156.0569000000005,0.004802812250946403,0.4514296361459015
+PWY-5030: L-histidine degradation III,g__Fusobacterium.s__Fusobacterium_nucleatum,4163.8639,0.003878595007396731,0.4514296361459015
+PWY-5030: L-histidine degradation III,g__Fusobacterium.s__Fusobacterium_periodonticum,1256.623,0.0011705309806067153,0.4514296361459015
+PWY-5030: L-histidine degradation III,g__Peptoniphilus.s__Peptoniphilus_sp_oral_taxon_386,482.625,0.00044956006257669643,0.4514296361459015
+P163-PWY: L-lysine fermentation to acetate and butanoate,g__Fusobacterium.s__Fusobacterium_nucleatum,10540.073499999999,0.9496024707078511,0.10033517333359886
+P163-PWY: L-lysine fermentation to acetate and butanoate,g__Fusobacterium.s__Fusobacterium_periodonticum,559.3853,0.05039752929214892,0.10033517333359886
+DENITRIFICATION-PWY: nitrate reduction I (denitrification),g__Pseudomonas.s__Pseudomonas_aeruginosa_group,53.9771,0.6051882149015704,0.0006851564823425555
+DENITRIFICATION-PWY: nitrate reduction I (denitrification),g__Pseudomonas.s__Pseudomonas_aeruginosa,35.2135,0.3948117850984297,0.0006851564823425555
+FUCCAT-PWY: fucose degradation,g__Haemophilus.s__Haemophilus_haemoglobinophilus,308780.8587,0.804506032845724,0.2754599619994199
+FUCCAT-PWY: fucose degradation,g__Pasteurella.s__Pasteurella_dagmatis,71451.4613,0.1861615772217968,0.2754599619994199
+FUCCAT-PWY: fucose degradation,g__Escherichia.s__Escherichia_coli,1278.9467,0.003332202456363369,0.2754599619994199
+FUCCAT-PWY: fucose degradation,g__Pasteurella.s__Pasteurella_multocida,1108.4723,0.0028880438261193785,0.2754599619994199
+FUCCAT-PWY: fucose degradation,g__Citrobacter.s__Citrobacter_freundii,958.165,0.00249642910576446,0.2754599619994199
+FUCCAT-PWY: fucose degradation,g__Enterobacter.s__Enterobacter_hormaechei,120.915,0.0003150352239160371,0.2754599619994199
+FUCCAT-PWY: fucose degradation,g__Klebsiella.s__Klebsiella_oxytoca,115.405,0.00030067932031617467,0.2754599619994199
+FERMENTATION-PWY: mixed acid fermentation,g__Haemophilus.s__Haemophilus_haemoglobinophilus,206156.9248,0.364866525835402,0.2039473487437312
+FERMENTATION-PWY: mixed acid fermentation,g__Serratia.s__Serratia_ureilytica,88256.62058,0.15620084828214242,0.2039473487437312
+FERMENTATION-PWY: mixed acid fermentation,g__Pasteurella.s__Pasteurella_dagmatis,83233.8769,0.14731135287246253,0.2039473487437312
+FERMENTATION-PWY: mixed acid fermentation,g__Serratia.s__Serratia_liquefaciens,54035.049,0.09563385086919823,0.2039473487437312
+FERMENTATION-PWY: mixed acid fermentation,g__Serratia.s__Serratia_nematodiphila,27343.2979,0.04839349500063674,0.2039473487437312
+FERMENTATION-PWY: mixed acid fermentation,g__Pasteurella.s__Pasteurella_canis,23545.0606,0.04167119038101798,0.2039473487437312
+FERMENTATION-PWY: mixed acid fermentation,g__Serratia.s__Serratia_marcescens,19034.186370000003,0.03368762635387091,0.2039473487437312
+FERMENTATION-PWY: mixed acid fermentation,g__Klebsiella.s__Klebsiella_oxytoca,16454.8264,0.029122549958567563,0.2039473487437312
